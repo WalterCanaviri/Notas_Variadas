@@ -8,24 +8,24 @@ Respuesta:
 Entendido, para crear la página web de reconocimiento de documentos con Laravel 9 para el back-end, Vue 3 para el front-end y PrimeVue 3 como biblioteca de componentes, y la base de datos MariaDB 10, se requieren los siguientes archivos y partes:
 
 1. Creación del proyecto Laravel y configuración del entorno de desarrollo:
-	Creación del proyecto Laravel usando el comando "composer create-project --prefer-dist laravel/laravel nombre_del_proyecto" en la línea de comandos.
-	Instalación de LAMP, WAMP o Laragon para configurar un entorno de desarrollo local que incluya PHP, Apache y MySQL/MariaDB.
+	Creación del proyecto Laravel usando el comando "composer create-project laravel/laravel:^9.*" en la línea de comandos.
+	Instalación de Laragon para configurar un entorno de desarrollo local que incluya PHP, Apache y MySQL/MariaDB.
 	Configuración de la base de datos MariaDB en el archivo .env del proyecto Laravel.
 2. Creación de la base de datos y las tablas necesarias:
-	Creación de la base de datos "reconocimiento_documentos" en phpMyAdmin o en la línea de comandos.
-	Creación de las tablas "users", "documents" y "tokens" con sus respectivos campos en la base de datos.
+	Creación de la base de datos "bd_proyecto_shc131" en phpMyAdmin o en la línea de comandos.
+	Creación de las tablas con sus respectivos campos en la base de datos.
 3. Creación de los modelos, migraciones y seeders:
-	Creación de los modelos User, Document y Token usando el comando "php artisan make:model NombreModelo -m" en la línea de comandos.
-	Creación de las migraciones correspondientes a los modelos usando el comando "php artisan make:migration nombre_de_la_migracion" en la línea de comandos.
-	Creación de los seeders correspondientes a cada modelo usando el comando "php artisan make:seeder NombreDelModeloTableSeeder" en la línea de comandos.
+	Creación de los modelos.
+	Creación de las migraciones correspondientes.
+	Creación de los seeders correspondientes.
 4. Configuración de las relaciones entre modelos:
-	Configuración de las relaciones "hasMany" y "belongsTo" entre los modelos User y Document.
-	Configuración de la relación "belongsTo" entre los modelos Document y Token.
+	Configuración de las relaciones "hasMany" y "belongsTo" entre los modelos.
+	Configuración de la relación "belongsTo".
 5. Creación de las rutas y controladores:
 	Creación de las rutas necesarias en el archivo web.php del proyecto Laravel para las páginas de subir documentos, buscar documentos y registrar usuarios.
-	Creación de los controladores necesarios usando el comando "php artisan make:controller NombreControlador" en la línea de comandos.
+	Creación de los controladores necesarios.
 6. Configuración de Laravel Sanctum:
-	Instalación de Laravel Sanctum usando el comando "composer require laravel/sanctum" en la línea de comandos.
+	Instalación de Laravel Sanctum.
 	Configuración de las opciones de Sanctum en el archivo config/auth.php del proyecto Laravel.
 	Configuración de las rutas protegidas por token en el archivo api.php del proyecto Laravel.
 7. Creación de la página de inicio de sesión:
