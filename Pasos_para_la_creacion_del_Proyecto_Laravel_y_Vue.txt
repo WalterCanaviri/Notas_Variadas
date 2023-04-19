@@ -1,0 +1,62 @@
+Entendido, para crear la página web de reconocimiento de documentos con Laravel 9 para el back-end, Vue 3 para el front-end y PrimeVue 3 como biblioteca de componentes, y la base de datos MariaDB 10, se requieren los siguientes archivos y partes:
+
+1. Creación del proyecto Laravel y configuración del entorno de desarrollo:
+	Creación del proyecto Laravel usando el comando "composer create-project --prefer-dist laravel/laravel nombre_del_proyecto" en la línea de comandos.
+	Instalación de LAMP, WAMP o Laragon para configurar un entorno de desarrollo local que incluya PHP, Apache y MySQL/MariaDB.
+	Configuración de la base de datos MariaDB en el archivo .env del proyecto Laravel.
+2. Creación de la base de datos y las tablas necesarias:
+	Creación de la base de datos "reconocimiento_documentos" en phpMyAdmin o en la línea de comandos.
+	Creación de las tablas "users", "documents" y "tokens" con sus respectivos campos en la base de datos.
+3. Creación de los modelos, migraciones y seeders:
+	Creación de los modelos User, Document y Token usando el comando "php artisan make:model NombreModelo -m" en la línea de comandos.
+	Creación de las migraciones correspondientes a los modelos usando el comando "php artisan make:migration nombre_de_la_migracion" en la línea de comandos.
+	Creación de los seeders correspondientes a cada modelo usando el comando "php artisan make:seeder NombreDelModeloTableSeeder" en la línea de comandos.
+4. Configuración de las relaciones entre modelos:
+	Configuración de las relaciones "hasMany" y "belongsTo" entre los modelos User y Document.
+	Configuración de la relación "belongsTo" entre los modelos Document y Token.
+5. Creación de las rutas y controladores:
+	Creación de las rutas necesarias en el archivo web.php del proyecto Laravel para las páginas de subir documentos, buscar documentos y registrar usuarios.
+	Creación de los controladores necesarios usando el comando "php artisan make:controller NombreControlador" en la línea de comandos.
+6. Configuración de Laravel Sanctum:
+	Instalación de Laravel Sanctum usando el comando "composer require laravel/sanctum" en la línea de comandos.
+	Configuración de las opciones de Sanctum en el archivo config/auth.php del proyecto Laravel.
+	Configuración de las rutas protegidas por token en el archivo api.php del proyecto Laravel.
+7. Creación de la página de inicio de sesión:
+	Creación de la página de inicio de sesión usando Vue 3 y PrimeVue 3.
+	Configuración de la página de inicio de sesión para que envíe la solicitud de inicio de sesión al servidor Laravel y reciba el token correspondiente.
+8. Creación de la página de subir documentos:
+	Creación de la página de subir documentos usando Vue 3 y PrimeVue 3.
+	Configuración de la página de subir documentos para que envíe la solicitud de subida de documentos al servidor Laravel y almacene los documentos en la base de datos y en el sistema de archivos.
+9. Creación de la página de búsqueda de documentos:
+	Creación de la página de búsqueda de documentos usando Vue 3 y PrimeVue 3.
+	Configuración de la página de búsqueda de documentos para que envíe la solicitud de búsqueda de documentos al servidor Laravel y reciba los documentos correspondientes,
+10. Configuración de la página de búsqueda de documentos para mostrar los resultados de la búsqueda:
+	Usando Vue 3 y PrimeVue 3, mostrar los documentos que contengan la palabra buscada, junto con la cantidad de coincidencias en cada documento.
+	Para cada documento, mostrar una lista de los párrafos que contienen la palabra buscada, resaltando la palabra en cada uno de ellos.
+	Al hacer clic en un documento, mostrar una vista previa del documento en una ventana modal, con la palabra buscada resaltada en todo el documento.
+11. Implementación de la autenticación con Laravel Sanctum:
+	Configurar Laravel Sanctum para proporcionar tokens de autenticación para los usuarios.
+	Crear la página de inicio de sesión y registro de usuarios en Vue 3 y PrimeVue 3.
+	Configurar el backend de Laravel para autenticar las solicitudes de API usando Laravel Sanctum.
+12. Implementación de la autorización de usuarios y roles:
+	Crear una tabla de roles y permisos en la base de datos MariaDB 10.
+	Configurar el backend de Laravel para verificar si un usuario tiene los permisos necesarios para realizar ciertas acciones (por ejemplo, agregar documentos, editar documentos, etc.).
+	Configurar la interfaz de usuario para mostrar opciones de acuerdo con los permisos del usuario.
+13. Implementación de la API de Solr para la búsqueda de documentos:
+	Configurar Apache Solr Attachments y Solr API para indexar los documentos PDF y permitir la búsqueda de texto completo en ellos.
+	Crear un controlador de Laravel que se conecte a la API de Solr y envíe solicitudes de búsqueda de documentos.
+	Configurar la página de búsqueda de documentos para enviar solicitudes de búsqueda de documentos al controlador de Laravel que se comunica con la API de Solr.
+14. Implementación de la paginación de resultados de búsqueda:
+	Configurar el controlador de Laravel para devolver los resultados de búsqueda en páginas.
+	Configurar la página de búsqueda de documentos para mostrar una lista paginada de resultados de búsqueda.
+15. Implementación del resaltado de términos en la búsqueda de documentos:
+	Configurar la API de Solr para devolver información de posición de términos en los documentos.
+	Configurar la página de búsqueda de documentos para resaltar los términos de búsqueda en los párrafos que los contienen.
+16. Implementación de Eloquent ORM para la gestión de usuarios y roles:
+	Configurar el backend de Laravel para utilizar Eloquent ORM en lugar de consultas SQL directas para la gestión de usuarios y roles.
+	Configurar la interfaz de usuario para permitir la creación, edición y eliminación de usuarios y roles.
+17. Implementación de la gestión de empleados:
+	Crear una tabla de empleados en la base de datos MariaDB 10.
+	Configurar el backend de Laravel para permitir la creación, edición y eliminación de empleados por parte de los usuarios con los permisos correspondientes.
+	Configurar la interfaz de usuario para permitir la gestión de empleados.
+En cuanto a la dirección y nombre del archivo que se usará, esto dependerá de cómo organices tu proyecto. Pero en general, cada parte del proyecto tendrá su propio conjunto de archivos en el backend y en el frontend, así como su propia configuración de base de datos. Asegúrate de seguir las mejores prácticas de organización de proyectos y

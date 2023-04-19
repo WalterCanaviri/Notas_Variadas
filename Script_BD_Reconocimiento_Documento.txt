@@ -1,0 +1,141 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema bd_proyecto_shc131
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema bd_proyecto_shc131
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `bd_proyecto_shc131` DEFAULT CHARACTER SET utf8 ;
+USE `bd_proyecto_shc131` ;
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Documento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Documento` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Ruta` VARCHAR(255) NOT NULL,
+  `Documento_subido` LONGTEXT NOT NULL,
+  `Fecha_de_registro` TIMESTAMP NOT NULL,
+  `Datos_adicionales` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Personal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Personal` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Cargo_asignado` VARCHAR(45) NOT NULL,
+  `Observaciones` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Gerente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Gerente` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Area_asignada` VARCHAR(45) NOT NULL,
+  `Telefono_fijo` VARCHAR(11) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(255) NOT NULL,
+  `Celular` VARCHAR(8) NOT NULL,
+  `Correo Electronico` VARCHAR(80) NOT NULL,
+  `Contraseña` VARCHAR(20) NOT NULL,
+  `Personal_id` INT NULL,
+  `Gerente_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Usuario_Personal_idx` (`Personal_id` ASC) VISIBLE,
+  INDEX `fk_Usuario_Gerente1_idx` (`Gerente_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Usuario_Personal`
+    FOREIGN KEY (`Personal_id`)
+    REFERENCES `bd_proyecto_shc131`.`Personal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Usuario_Gerente1`
+    FOREIGN KEY (`Gerente_id`)
+    REFERENCES `bd_proyecto_shc131`.`Gerente` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Registro de actividad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Registro de actividad` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Fecha` TIMESTAMP NOT NULL,
+  `Accion` VARCHAR(45) NOT NULL,
+  `Usuario_id` INT NOT NULL,
+  `Documento_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Registro de actividad_Usuario1_idx` (`Usuario_id` ASC) VISIBLE,
+  INDEX `fk_Registro de actividad_Documento1_idx` (`Documento_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Registro de actividad_Usuario1`
+    FOREIGN KEY (`Usuario_id`)
+    REFERENCES `bd_proyecto_shc131`.`Usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Registro de actividad_Documento1`
+    FOREIGN KEY (`Documento_id`)
+    REFERENCES `bd_proyecto_shc131`.`Documento` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Palabra`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Palabra` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Palabra_a_buscar` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bd_proyecto_shc131`.`Busqueda`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_proyecto_shc131`.`Busqueda` (
+  `Documento_id` INT NOT NULL,
+  `Palabra_id` INT NOT NULL,
+  `Pagina` INT NOT NULL,
+  `Ubicacion` TEXT NOT NULL,
+  PRIMARY KEY (`Documento_id`, `Palabra_id`),
+  INDEX `fk_Documento_has_Palabra_Palabra1_idx` (`Palabra_id` ASC) VISIBLE,
+  INDEX `fk_Documento_has_Palabra_Documento1_idx` (`Documento_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Documento_has_Palabra_Documento1`
+    FOREIGN KEY (`Documento_id`)
+    REFERENCES `bd_proyecto_shc131`.`Documento` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Documento_has_Palabra_Palabra1`
+    FOREIGN KEY (`Palabra_id`)
+    REFERENCES `bd_proyecto_shc131`.`Palabra` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
